@@ -1,0 +1,7 @@
+- name: Install developer-friendly shell packages
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+    - vim-nox
+    - screen
+    - zsh
+    - htop

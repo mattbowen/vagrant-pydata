@@ -1,0 +1,17 @@
+
+- name: Install Postgres and Friends
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+    - postgresql-client-9.3
+    - postgresql-9.3
+    - postgresql-contrib-9.3
+    - libpq-dev
+    - python-psycopg2
+
+- name: Create Vagrant Postgres Superuser
+  postgresql_user: name=vagrant role_attr_flags=CREATEDB,CREATEROLE,SUPERUSER
+  sudo_user: postgres
+
+- name: Create Vagrant Database
+  postgresql_db: name=vagrant
+  sudo_user: postgres

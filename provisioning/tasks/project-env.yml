@@ -1,0 +1,17 @@
+- name: Ensure pip and virtualenv
+  apt: name={{item}} state=latest update_cache=yes
+  with_items:
+    - python-pip
+    - python-virtualenv
+
+- name: Create project environment
+  file: path=/vagrant/projectenv state=directory
+  sudo_user: vagrant
+
+- name: Add requirements file
+  template: src=templates/requirements.txt.in dest=/vagrant/projectenv/requirements.txt owner=vagrant
+  sudo_user: vagrant
+
+- name: Create Virtualenv and install requirements
+  pip: requirements=/vagrant/projectenv/requirements.txt virtualenv=/vagrant/projectenv virtualenv_command=virtualenv
+  sudo_user: vagrant

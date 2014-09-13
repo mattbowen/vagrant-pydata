@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+    - include: tasks/dev-packages.yml
+    - include: tasks/comfort-packages.yml
+    - include: tasks/dotfiles.yml
+    - include: tasks/postgres.yml
+    - include: tasks/project-env.yml

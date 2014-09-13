@@ -1,0 +1,18 @@
+- name: Install git and zsh
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+   - git
+   - zsh
+   - git-core
+
+- name: Clone oh-my-zsh repo
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/vagrant/.oh-my-zsh
+
+- name: remove standard zshrc
+  file: path=/home/vagrant/.zshrc state=absent
+
+- name: deploy .zshrc
+  template: src=templates/zshrc.in dest=/home/vagrant/.zshrc owner=vagrant
+
+- name: Set zsh as default shell
+  user: name=vagrant shell=/bin/zsh

@@ -1,0 +1,71 @@
+- name: Install basic packages
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+    - build-essential
+    - gcc
+    - binutils
+    - cmake
+    - libpcre3-dev
+    - libreadline-gplv2-dev
+    - libncursesw5-dev
+    - libc6-dev
+    - libssl-dev
+    - sqlite3
+    - libsqlite3-dev
+    - libz-dev
+    - libgdbm-dev
+    - libpng-dev
+    - tk-dev
+    - libcairo2-dev
+    - libxslt-dev
+    - libblas-dev
+    - gfortran
+    - libblas3gf
+    - liblapack-dev
+    - libsuitesparse-dev
+    - swig
+    - libmemcached-dev
+    - libcurl4-gnutls-dev
+    - pandoc
+    - libevent-dev
+    - libpcrecpp0
+    - libxml2-utils
+    - libxml2-dbg
+    - libxml2-dev
+    - libgmp3-dev
+    - libmpfr-dev
+    - libboost-dev
+    - libboost-all-dev
+    - libboost-graph-dev
+    - uuid-dev
+    - default-jre
+    - git
+    - git-core
+
+- name: Install Database Client Libs
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+    - libpq-dev
+    - libmysqlclient-dev
+
+- name: Install PIL Dependencies
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+    - libbz2-dev
+    - zlib1g-dev
+    - libfreetype6-dev
+    - libjpeg62-dev
+    - liblcms1-dev
+
+- name: Install Python Pacakges
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+    - python2.7
+    - python2.7-dev
+    - python2.7-dbg
+    - libpython2.7
+    - python-setuptools
+    - libpq-dev
+    - python-virtualenv
+    - python-profiler
+    - virtualenvwrapper
