@@ -1,0 +1,4 @@
+[global]
+download-cache=/home/vagrant/.egg-cache
+wheel-dir=/home/vagrant/.wheel-house
+find-links=file:///home/vagrant/.wheel-house

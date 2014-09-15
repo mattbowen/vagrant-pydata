@@ -1,0 +1,14 @@
+# auto-screen support; see http://taint.org/wk/RemoteLoginAutoScreen
+# detach on hangup
+autodetach on
+# no startup msg
+startup_message off
+# always use a login shell
+shell -$SHELL
+
+# auto-log
+logfile $HOME/lib/screen-logs/%Y%m%d-%n.log
+deflog off
+
+hardstatus alwayslastline "%{rk}%H %{yk}%M%d %{wk}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw%?"
+defscrollback 30000

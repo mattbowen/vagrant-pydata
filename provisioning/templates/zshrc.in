@@ -15,12 +15,42 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
+export PATH=~/bin:$PATH
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/id_rsa"
+if [ -z "${STY}" -a -t 0 ]; then
+    reattach () {
+        if [ -n "${SSH_AUTH_SOCK}" ]; then
+            ln -snf "${SSH_AUTH_SOCK}" "${HOME}/.ssh/agent-screen"
+            SSH_AUTH_SOCK="${HOME}/.ssh/agent-screen" export SSH_AUTH_SOCK
+        fi
+        exec screen -A -D -RR ${1:+"$@"}
+    }
+fi
+
+# Auto-screen invocation. see: http://taint.org/wk/RemoteLoginAutoScreen
+# if we're coming from a remote SSH connection, in an interactive session
+# then automatically put us into a screen(1) session.   Only try once
+# -- if $STARTED_SCREEN is set, don't try it again, to avoid looping
+# if screen fails for some reason.
+if [ "$PS1" != "" -a "${STARTED_SCREEN:-x}" = x -a "${SSH_TTY:-x}" != x ]
+then
+  STARTED_SCREEN=1 ; export STARTED_SCREEN
+  [ -d $HOME/lib/screen-logs ] || mkdir -p $HOME/lib/screen-logs
+  sleep 1
+  reattach && exit 0
+  # normally, execution of this rc script ends here...
+  echo "Screen failed! continuing with normal bash startup"
+fi
+# [end of auto-screen snippet]
+
+export WORKON_HOME=/vagrant/projects/.envs
+export PROJECT_HOME=/vagrant/projects/
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
 alias ',rp'='source ~/.zshrc'
+alias 'mkproject'='mkvirtualenv $1 -r /vagrant/projects/.envs/base/requirements.txt'
 alias ',g'='git'
 alias ',ga'='git add'
 alias ',gap'='git add --patch'

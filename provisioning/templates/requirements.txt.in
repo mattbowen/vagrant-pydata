@@ -23,8 +23,9 @@ ipdb
 ipycache
 lxml
 nose
+openpyxl
 pandas
-psycopg
+psycopg2
 pyparsing
 python-dateutil
 python-slugify
@@ -34,6 +35,7 @@ requests
 six
 tornado
 wsgiref
+wheel
 xlrd
 xlwt
 

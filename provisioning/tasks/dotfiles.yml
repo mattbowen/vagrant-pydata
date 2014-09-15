@@ -7,6 +7,7 @@
 
 - name: Clone oh-my-zsh repo
   git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/vagrant/.oh-my-zsh
+  sudo_user: vagrant
 
 - name: remove standard zshrc
   file: path=/home/vagrant/.zshrc state=absent
@@ -16,3 +17,21 @@
 
 - name: Set zsh as default shell
   user: name=vagrant shell=/bin/zsh
+
+- name: Create pip folder
+  file: path=/home/vagrant/.pip state=directory owner=vagrant
+
+- name: Create .pip file
+  template: src=templates/pip.conf.in dest=/home/vagrant/.pip/pip.conf owner=vagrant
+
+- name: Create .screen file
+  template: src=templates/screen.in dest=/home/vagrant/.screenrc owner=vagrant
+
+- name: Create .vim file
+  template: src=templates/vim.in dest=/home/vagrant/.vim owner=vagrant
+
+- name: create ~/bin directory
+  file: path=/home/vagrant/bin state=directory owner=vagrant
+
+- name: copy Notebook script to bin
+  template: src=templates/bin/notebook.in dest=/home/vagrant/bin owner=vagrant mode=700

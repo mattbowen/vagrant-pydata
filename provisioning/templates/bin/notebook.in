@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+if [ $VIRTUAL_ENV ]; then
+        PRJNAME=$(echo $VIRTUAL_ENV | sed -r "s/.*?\/(.*)$/\1/" | tr -d '\n')
+else
+        PRJNAME=$1
+fi
+
+PRJPATH=$(echo /vagrant/projects/$PRJNAME)
+NOTEBOOK_PATH=$(echo $PRJPATH/notebooks)
+echo $NOTEBOOK_PATH
+if [ ! -d "$NOTEBOOK_PATH" ]; then
+        mkdir -p $NOTEBOOK_PATH
+fi
+cd $NOTEBOOK_PATH
+/vagrant/projects/.envs/$PRJNAME/bin/ipython notebook --no-browser --ip=0.0.0.0

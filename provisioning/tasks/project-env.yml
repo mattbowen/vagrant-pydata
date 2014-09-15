@@ -5,13 +5,21 @@
     - python-virtualenv
 
 - name: Create project environment
-  file: path=/vagrant/projectenv state=directory
+  file: path=/vagrant/projects/.envs/base state=directory
   sudo_user: vagrant
 
 - name: Add requirements file
-  template: src=templates/requirements.txt.in dest=/vagrant/projectenv/requirements.txt owner=vagrant
+  template: src=templates/requirements.txt.in dest=/vagrant/projects/.envs/base/requirements.txt owner=vagrant
   sudo_user: vagrant
 
 - name: Create Virtualenv and install requirements
-  pip: requirements=/vagrant/projectenv/requirements.txt virtualenv=/vagrant/projectenv virtualenv_command=virtualenv
+  pip: requirements=/vagrant/projects/.envs/base/requirements.txt virtualenv=/vagrant/projects/.envs/base virtualenv_command=virtualenv extra_args='--download-cache=/home/vagrant/.egg-cache'
+  sudo_user: vagrant
+
+- name: Fully upgrade pip
+  command: /vagrant/projects/.envs/base/bin/pip install --upgrade pip
+  sudo_user: vagrant
+
+- name: Build wheels from dependencies to make future installs faster
+  command: /vagrant/projects/.envs/base/bin/pip wheel -r /vagrant/projectenv/requirements.txt
   sudo_user: vagrant
