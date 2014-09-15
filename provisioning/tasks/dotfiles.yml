@@ -34,4 +34,4 @@
   file: path=/home/vagrant/bin state=directory owner=vagrant
 
 - name: copy Notebook script to bin
-  template: src=templates/bin/notebook.in dest=/home/vagrant/bin owner=vagrant mode=700
+  template: src=templates/bin/notebook.in dest=/home/vagrant/bin/notebook owner=vagrant mode=700
