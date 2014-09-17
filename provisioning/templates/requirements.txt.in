@@ -22,7 +22,9 @@ ipython-sql
 ipdb
 ipycache
 lxml
+MySQL-python
 nose
+oursql
 openpyxl
 pandas
 psycopg2
@@ -32,6 +34,8 @@ python-slugify
 pytz
 pyzmq
 requests
+python-rex
+scikit-learn
 six
 tornado
 wsgiref
