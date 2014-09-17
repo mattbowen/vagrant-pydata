@@ -13,5 +13,13 @@
   sudo_user: postgres
 
 - name: Create Vagrant Database
-  postgresql_db: name=vagrant
   sudo_user: postgres
+  postgresql_db: name=vagrant
+
+- name: Create Vagrant Postgres Superuser
+  postgresql_user: name=notebook role_attr_flags=CREATEDB,CREATEROLE,SUPERUSER password=notebook
+  sudo_user: postgres
+
+- name: Create Vagrant Database
+  sudo_user: postgres
+  postgresql_db: name=notebook

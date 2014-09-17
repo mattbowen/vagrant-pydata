@@ -48,6 +48,12 @@
     - libpq-dev
     - libmysqlclient-dev
 
+- name: Install Database Clients
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+    - mysql-client
+    - postgresql-client-9.3
+
 - name: Install PIL Dependencies
   apt: name={{item}} state=installed update_cache=yes
   with_items:
