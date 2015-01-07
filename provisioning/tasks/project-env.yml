@@ -23,3 +23,7 @@
 - name: Build wheels from dependencies to make future installs faster
   command: /vagrant/projects/.envs/base/bin/pip wheel -r /vagrant/projects/.envs/base/requirements.txt
   sudo_user: vagrant
+
+- name: Freeze current versions for future environments
+  command: /vagrant/projects/.envs/base/bin/pip freeze > /vagrant/projects/.envs/base/requirements.txt
+  sudo_user: vagrant
