@@ -3,7 +3,7 @@ Installation
 
 * Install `virtual box <https://www.virtualbox.org/wiki/Downloads>`_
 * Install `vagrant <https://www.vagrantup.com/downloads.html>`_
-* Clone this repo: ``git clone https://github.com/mattbowen/vagrant-python.git``
+* Clone this repo: ``git clone https://github.com/mattbowen/vagrant-pydata.git``
 * Install ansible (preferrably in a virtual environment): ``pip install ansible``
 * Run ``vagrant up`` in the directory where you cloned the repository
 * Find something else to keep you busy for the next 30-45 minutes
