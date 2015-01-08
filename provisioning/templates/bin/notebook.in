@@ -13,4 +13,4 @@ if [ ! -d "$NOTEBOOK_PATH" ]; then
         mkdir -p $NOTEBOOK_PATH
 fi
 cd $NOTEBOOK_PATH
-/vagrant/projects/.envs/$PRJNAME/bin/ipython notebook --no-browser --ip=0.0.0.0
+/home/vagrant/.envs/$PRJNAME/bin/ipython notebook --no-browser --ip=0.0.0.0

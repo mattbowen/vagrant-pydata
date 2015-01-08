@@ -45,12 +45,12 @@ then
 fi
 # [end of auto-screen snippet]
 
-export WORKON_HOME=/vagrant/projects/.envs
+export WORKON_HOME=/home/vagrant/.envs
 export PROJECT_HOME=/vagrant/projects/
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
 alias ',rp'='source ~/.zshrc'
-alias 'mkproject'='mkvirtualenv $1 -r /vagrant/projects/.envs/base/requirements.txt'
+alias 'mkproject'='mkvirtualenv $1 -r /home/vagrant/.envs/base/requirements.txt'
 alias ',g'='git'
 alias ',ga'='git add'
 alias ',gap'='git add --patch'
