@@ -17,6 +17,7 @@ backports.ssl-match-hostname
 beautifulsoup4
 dataset
 docutils
+into
 ipython[all]
 ipython-sql
 ipdb
